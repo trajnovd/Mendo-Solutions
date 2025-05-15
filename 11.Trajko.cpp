@@ -10,26 +10,27 @@
 using namespace std;
  
 int main(){
-int n,m;
-cin >> n >> m;
-vector<int> v;
-    for (int i = 0; i < n; i++) {
-        int a;
-        cin >> a;
-        v.push_back(a);
+  string s;
+  cin >> s;
+    for (int i = 0; i < s.size(); i++) {
+        if(s[i]>= 'A' && s[i]<='Z'){
+            s[i] = s[i]+ ('a' - 'A');
+        }
     }
-    sort(v.rbegin(), v.rend());
-    int res = 0;
-    for (int i = 0; i < n;) {
-        if(i+m<n){
-            res = v[i]*2+res;
-            i = i+m;
+    long long res = 1;
+    for (int i = 0; i < s.size(); i++) {
+        if(s[i]=='t'){
+            res *= 3;
+            i = i+7;
         }
-        else{
-            res = res + v[i]*2;
-            i = i+(n-i);
+        else if(s[i] == 'd'){
+            res *= 2;
+            i = i+4;
         }
- 
+        else if(s[i] == 'm'){
+            res -= 1;
+            i = i+4;
+        }
     }
     cout << res;
 }
